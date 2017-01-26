@@ -48,14 +48,14 @@ public class OpWorkingMode extends OpMode {
         telemetry.addData("Status", "Running: " + runtime.toString());
 
         float x = gamepad1.right_stick_x;
-        float y = gamepad1.right_stick_y;
+        float y = -gamepad1.right_stick_y;
         if (x != 0 || y != 0)
         {
             if (x <= 0 && y > 0)
             {
-                leftMotor.setPower(0.5);
+                rightMotor.setPower(0.5);
                 double angle = Math.atan2(y, x) - 3.0/2.0*Math.PI;
-                rightMotor.setPower(angle*0.5*2/Math.PI);
+                leftMotor.setPower(angle*0.5*2/Math.PI);
             }
             else if (x > 0 && y >= 0)
             {
