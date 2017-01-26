@@ -48,7 +48,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@TeleOp(name="Template: My OpMode", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@TeleOp(name="First OpMode", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
 public class MyOpmode extends OpMode
 {
 
@@ -64,32 +64,20 @@ public class MyOpmode extends OpMode
         leftMotor  = hardwareMap.dcMotor.get("left_drive");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
     }
-
-    /*
-     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
-     */
     @Override
     public void init_loop() {
     }
 
-    /*
-     * Code to run ONCE when the driver hits PLAY
-     */
     @Override
     public void start() {
         runtime.reset();
     }
-
-    /*
-     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
-     */
     @Override
     public void loop() {
         telemetry.addData("Status", "Running: " + runtime.toString());
 
-        // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards
-         leftMotor.setPower(-1);
-         rightMotor.setPower(+1);
+        leftMotor.setPower(-1);
+        rightMotor.setPower(+1);
     }
 
     /*
