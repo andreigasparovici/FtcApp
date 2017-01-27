@@ -1,10 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import java.util.Date;
 
 /**
  * Created by andrei on 26.01.2017.
@@ -51,29 +55,31 @@ public class OpWorkingMode extends OpMode {
         float y = -gamepad1.right_stick_y;
         if (x != 0 || y != 0)
         {
-            if (x <= 0 && y > 0)
+            if (x <= 0 && y > 0) // cadranul 2
             {
                 rightMotor.setPower(0.5);
                 double angle = Math.atan2(y, x) - 3.0/2.0*Math.PI;
-                leftMotor.setPower(angle*0.5*2/Math.PI);
+                //leftMotor.setPower(angle*0.5*2/Math.PI);
+                leftMotor.setPower(Math.cos(angle) * -0.5);
             }
             else if (x > 0 && y >= 0)
             {
-                rightMotor.setPower(0.5);
-                double angle = Math.PI/2 - Math.atan2(y, x);
-                leftMotor.setPower(angle*0.5*2/Math.PI);
+                leftMotor.setPower(-0.5);
+                double angle = Math.atan2(y, x);
+                rightMotor.setPower(Math.sin(angle) * 0.5);
+                //Log.e("TELLME", x + " " + y + " " + angle + " " + Math.cos(angle)*-0.5 + " " + new Date().getSeconds());
             }
             else if (x < 0 && y < 0)
             {
-                leftMotor.setPower(0.5);
-                double angle = Math.PI/2 - (Math.atan2(y, x) - Math.PI);
-                rightMotor.setPower(angle*0.5*2/Math.PI);
+                rightMotor.setPower(-0.5);
+                double angle = (Math.atan2(y, x) - Math.PI);
+                leftMotor.setPower(Math.cos(angle)*0.5);
             }
             else if (x >= 0 && y <= 0)
             {
-                rightMotor.setPower(0.5);
+                leftMotor.setPower(-0.5);
                 double angle = Math.atan2(y, x) - Math.PI/2;
-                leftMotor.setPower(angle*0.5*2/Math.PI);
+                rightMotor.setPower(Math.sin(angle)*0.5);
             }
         }
         else
