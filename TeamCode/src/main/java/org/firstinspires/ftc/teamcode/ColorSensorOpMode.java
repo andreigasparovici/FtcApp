@@ -17,6 +17,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
  */
 
 @TeleOp(name="Color Sensor OpMode", group="Iterative Opmode")
+@Disabled
 public class ColorSensorOpMode extends LinearOpMode {
 
     ColorSensor sensorRGB;
@@ -24,7 +25,7 @@ public class ColorSensorOpMode extends LinearOpMode {
 
     // we assume that the LED pin of the RGB sensor is connected to
     // digital port 5 (zero indexed).
-    static final int LED_CHANNEL = 5;
+    static final int LED_CHANNEL = 2;
 
     @Override
     public void runOpMode() {
@@ -44,7 +45,7 @@ public class ColorSensorOpMode extends LinearOpMode {
         boolean bCurrState = false;
 
         // bLedOn represents the state of the LED.
-        boolean bLedOn = true;
+        boolean bLedOn = false;
 
         // get a reference to our DeviceInterfaceModule object.
         cdim = hardwareMap.deviceInterfaceModule.get("dim");
@@ -58,7 +59,7 @@ public class ColorSensorOpMode extends LinearOpMode {
         sensorRGB = hardwareMap.colorSensor.get("sensor_color");
 
         // turn the LED on in the beginning, just so user will know that the sensor is active.
-        cdim.setDigitalChannelState(LED_CHANNEL, bLedOn);
+        cdim.setDigitalChannelState(LED_CHANNEL, false);
 
         // wait for the start button to be pressed.
         waitForStart();
@@ -68,22 +69,25 @@ public class ColorSensorOpMode extends LinearOpMode {
         while (opModeIsActive())  {
 
             // check the status of the x button on gamepad.
-            bCurrState = gamepad1.x;
+            /*bCurrState = gamepad1.x;
 
             // check for button-press state transitions.
             if ((bCurrState == true) && (bCurrState != bPrevState))  {
 
                 // button is transitioning to a pressed state. Toggle the LED.
-                bLedOn = !bLedOn;
+                //bLedOn = !bLedOn;
                 cdim.setDigitalChannelState(LED_CHANNEL, bLedOn);
             }
+
+
 
             // update previous state variable.
             bPrevState = bCurrState;
 
-            // convert the RGB values to HSV values.
+            // convert the RGB values to HSV values.*/
             Color.RGBToHSV((sensorRGB.red() * 255) / 800, (sensorRGB.green() * 255) / 800, (sensorRGB.blue() * 255) / 800, hsvValues);
 
+            cdim.setDigitalChannelState(LED_CHANNEL, false);
             // send the info back to driver station using telemetry function.
             telemetry.addData("LED", bLedOn ? "On" : "Off");
             telemetry.addData("Clear", sensorRGB.alpha());
@@ -95,11 +99,13 @@ public class ColorSensorOpMode extends LinearOpMode {
             // change the background color to match the color detected by the RGB sensor.
             // pass a reference to the hue, saturation, and value array as an argument
             // to the HSVToColor method.
-            relativeLayout.post(new Runnable() {
+            relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
+
+           /* relativeLayout.post(new Runnable() {
                 public void run() {
-                    relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
+
                 }
-            });
+            });*/
 
             telemetry.update();
         }
