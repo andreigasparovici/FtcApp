@@ -27,6 +27,7 @@ public class Autonomie1 extends OpMode {
     public I2cDevice RANGE1;
     public I2cDeviceSynch RANGE1Reader;
 
+
     public void init(){
 
         leftMotor  = hardwareMap.dcMotor.get("left_drive");
@@ -49,10 +50,8 @@ public class Autonomie1 extends OpMode {
             rightMotor.setPower(0);
             leftMotor.setPower(0);
         } else {
-
             rightMotor.setPower(-.5);
             leftMotor.setPower(-.5);
-
         }
 
     }

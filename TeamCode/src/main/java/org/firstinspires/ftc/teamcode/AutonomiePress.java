@@ -49,40 +49,46 @@ public class AutonomiePress extends LinearOpMode {
     }
 
     public void myInit() {
+
         colorSensor = hardwareMap.colorSensor.get("color_sensor");
         colorSensor.enableLed(false);
 
         colorServo = hardwareMap.servo.get("color_servo");
         pressServo = hardwareMap.servo.get("press_servo");
 
-        leftMotor = hardwareMap.dcMotor.get("left_drive");
+        /*leftMotor = hardwareMap.dcMotor.get("left_drive");
         rightMotor = hardwareMap.dcMotor.get("right_drive");
 
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);*/
 
         colorServo.setPosition(0.12);
         pressServo.setPosition(0.12);
     }
 
-    public final static double COLOR_SERVO_LEFT = 0.12;
-    public final static double COLOR_SERVO_RIGHT = 0.67;
+    public final static double PRESS_SERVO_LEFT = 0.12;
+    public final static double PRESS_SERVO_RIGHT = 0.67;
+    public final static double COLOR_SERVO_LEFT = 0.01;
+    public final static double COLOR_SERVO_RIGHT = 0.99;
+
+
 
     public boolean inhim;
 
     public void beginColorCheck() throws InterruptedException {
         inhim = true;
         colorServo.setPosition(COLOR_SERVO_LEFT);
-        sleep(100);
+        sleep(200);
+
         if (!isTeamColor()) {
-            pressServo.setPosition(COLOR_SERVO_LEFT);
+            pressServo.setPosition(PRESS_SERVO_LEFT);
         }
 
         sleep(500);
 
         colorServo.setPosition(COLOR_SERVO_RIGHT);
-        sleep(100);
+        sleep(200);
         if (!isTeamColor()) {
-            pressServo.setPosition(COLOR_SERVO_RIGHT);
+            pressServo.setPosition(PRESS_SERVO_RIGHT);
         }
         inhim = false;
     }
@@ -92,11 +98,8 @@ public class AutonomiePress extends LinearOpMode {
 
         myInit();
 
-        // wait for the start button to be pressed.
         waitForStart();
 
-        // loop and read the RGB data.
-        // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
         while (opModeIsActive())  {
             myLoop();
             telemetry.update();
@@ -112,17 +115,18 @@ public class AutonomiePress extends LinearOpMode {
         telemetry.addData("alpha", colorSensor.alpha());
         telemetry.addData("hue", colorSensor.argb());
 
-        leftMotor.setPower(gamepad1.left_stick_y);
-        rightMotor.setPower(gamepad1.right_stick_y);
+        //leftMotor.setPower(gamepad1.left_stick_y);
+        //rightMotor.setPower(gamepad1.right_stick_y);
 
         if (gamepad1.b) {
-            if (!inhim)
+            if (!inhim) {
                 try {
                     beginColorCheck();
                 } catch (InterruptedException e) {
                     telemetry.addData("Cought Exception", "fuuu");
                     e.printStackTrace();
                 }
+            }
         }
     }
 }
