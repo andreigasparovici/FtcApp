@@ -69,7 +69,7 @@ public class AutonomiePressV2 extends LinearOpMode {
 
 
     public boolean inhim;
-    public int harcoded = 100000;
+    public int harcoded = 200000;
 
     public void pressLeft() {
         leftMotor.setPower(0);
@@ -100,15 +100,18 @@ public class AutonomiePressV2 extends LinearOpMode {
         colorServo.setPosition(COLOR_SERVO_RIGHT);
         sleep(1000);
         boolean right = isTeamColor();
+        colorServo.setPosition(COLOR_SERVO_REST);
+        sleep(1000);
 
-        if (left && right) return;
+        if (left && right) {
+            inhim = false;
+            return;
+        }
         if (left)
             pressLeft();
         else
             pressRight();
 
-        colorServo.setPosition(COLOR_SERVO_REST);
-        sleep(500);
         inhim = false;
     }
 
