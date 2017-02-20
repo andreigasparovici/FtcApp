@@ -83,7 +83,7 @@ public class AutonomiePressV2 extends LinearOpMode {
         rightMotor.setPower(0);
         leftMotor.setPower(1);
         for (int i = 0; i < harcoded; i++) {
-            leftMotor.setPower(1);
+            leftMotor.setPower(-1);
         }
     }
 
@@ -107,6 +107,8 @@ public class AutonomiePressV2 extends LinearOpMode {
         else
             pressRight();
 
+        colorServo.setPosition(COLOR_SERVO_REST);
+        sleep(500);
         inhim = false;
     }
 
@@ -123,14 +125,17 @@ public class AutonomiePressV2 extends LinearOpMode {
         }
     }
 
-
-
-    public void myLoop() {
+    private void colorTelemetryUpdate()
+    {
         telemetry.addData("Red", colorSensor.red());
         telemetry.addData("blue", colorSensor.blue());
         telemetry.addData("green", colorSensor.green());
         telemetry.addData("alpha", colorSensor.alpha());
         telemetry.addData("hue", colorSensor.argb());
+    }
+
+    public void myLoop() {
+        colorTelemetryUpdate();
 
         //leftMotor.setPower(gamepad1.left_stick_y);
         //rightMotor.setPower(gamepad1.right_stick_y);
