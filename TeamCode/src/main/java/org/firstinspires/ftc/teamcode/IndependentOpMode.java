@@ -6,13 +6,15 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.utils.PerieHandler;
+
 /**
  * Created by timi on 27.01.2017.
  */
 
 @TeleOp(name="Independent OpMode **THE GOOD ONE**", group="Iterative Opmode")
-public class IndependentOpMode extends OpMode {
-
+public class IndependentOpMode {
+    /*
     private ElapsedTime runtime = new ElapsedTime();
 
     private boolean isRotatingForward = false;
@@ -23,6 +25,7 @@ public class IndependentOpMode extends OpMode {
 
     private DcMotor perieMotor = null;
 
+
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");
@@ -31,6 +34,8 @@ public class IndependentOpMode extends OpMode {
         rightMotor = hardwareMap.dcMotor.get("right_drive");
 
         perieMotor = hardwareMap.dcMotor.get("motor_perie");
+
+        PerieHandler.init(perieMotor);
     }
 
     @Override
@@ -58,8 +63,18 @@ public class IndependentOpMode extends OpMode {
         rightMotor.setPower(-gamepad1.right_stick_y);
         leftMotor.setPower(gamepad1.left_stick_y);
 
+<<<<<<< HEAD
         if (gamepad1.a && !prevstate) {
             switchPerie();
+=======
+        PerieHandler.update(gamepad1.a, gamepad1.y);
+
+
+  /*      if (gamepad1.a) {
+            if (rotatiePerie == 1)
+                rotatiePerie = 0;
+            else rotatiePerie = 1;
+>>>>>>> fce207befd05fbd4e4a87d0c46103955b6192e73
         }
         prevstate = gamepad1.a;
 
@@ -73,6 +88,6 @@ public class IndependentOpMode extends OpMode {
             perieMotor.setPower(1);
         else if (rotatiePerie == -1)
             perieMotor.setPower(-1);
-        else perieMotor.setPower(0);
+        else perieMotor.setPower(0);*/
     }
-}
+
