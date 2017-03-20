@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.View;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -48,28 +49,28 @@ public class AutonomiePress extends LinearOpMode {
         return (teamColor != TeamColor.RED) ^ isRed();
     }
 
+    private void pressLeft(){
+        leftMotor.setPower(-1);
+        sleep(300);
+    }
+
+     private void pressRight(){
+        rightMotor.setPower(1);
+        sleep(300);
+    }
+
     public void myInit() {
 
         colorSensor = hardwareMap.colorSensor.get("color_sensor");
         colorSensor.enableLed(false);
 
         colorServo = hardwareMap.servo.get("color_servo");
-        pressServo = hardwareMap.servo.get("press_servo");
 
-        /*leftMotor = hardwareMap.dcMotor.get("left_drive");
-        rightMotor = hardwareMap.dcMotor.get("right_drive");
-
-        leftMotor.setDirection(DcMotorSimple.Direction.REVERSE);*/
-
-        colorServo.setPosition(0.12);
-        pressServo.setPosition(0.12);
+        colorServo.setPosition(0.1);
     }
 
-    public final static double PRESS_SERVO_LEFT = 0.12;
-    public final static double PRESS_SERVO_RIGHT = 0.67;
     public final static double COLOR_SERVO_LEFT = 0.01;
     public final static double COLOR_SERVO_RIGHT = 0.99;
-
 
 
     public boolean inhim;
@@ -80,7 +81,8 @@ public class AutonomiePress extends LinearOpMode {
         sleep(200);
 
         if (!isTeamColor()) {
-            pressServo.setPosition(PRESS_SERVO_LEFT);
+           // pressServo.setPosition(PRESS_SERVO_LEFT);
+            pressLeft();
         }
 
         sleep(500);
@@ -88,7 +90,8 @@ public class AutonomiePress extends LinearOpMode {
         colorServo.setPosition(COLOR_SERVO_RIGHT);
         sleep(200);
         if (!isTeamColor()) {
-            pressServo.setPosition(PRESS_SERVO_RIGHT);
+            //pressServo.setPosition(PRESS_SERVO_RIGHT);
+            pressRight();
         }
         inhim = false;
     }
@@ -101,14 +104,14 @@ public class AutonomiePress extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive())  {
-            myLoop();
+            //myLoop();
             telemetry.update();
         }
     }
 
 
 
-    public void myLoop() {
+    /*public void myLoop() {
         telemetry.addData("Red", colorSensor.red());
         telemetry.addData("blue", colorSensor.blue());
         telemetry.addData("green", colorSensor.green());
@@ -128,5 +131,5 @@ public class AutonomiePress extends LinearOpMode {
                 }
             }
         }
-    }
+    }*/
 }

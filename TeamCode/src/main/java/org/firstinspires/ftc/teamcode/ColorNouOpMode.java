@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -12,6 +13,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 
 @TeleOp(name="Color Sensor Bun OpMode", group="Iterative Opmode")
+@Disabled
 public class ColorNouOpMode extends OpMode{
 
     ColorSensor colorSensor;

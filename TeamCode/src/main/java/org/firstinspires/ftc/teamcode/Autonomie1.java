@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -13,6 +14,7 @@ import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
  * Created by alex on 31.01.2017.
  */
 @TeleOp(name="Autonomie 1", group="Autonomous Opmode")
+@Disabled
 public class Autonomie1 extends OpMode {
 
     DcMotor leftMotor;

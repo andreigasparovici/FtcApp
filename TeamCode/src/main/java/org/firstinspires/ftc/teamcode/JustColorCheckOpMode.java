@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -11,6 +12,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
  * Created by alex on 01.02.2017.
  */
 @TeleOp(name="Color check OpMode", group="Iterative Opmode")
+@Disabled
 public class JustColorCheckOpMode extends OpMode{
 
         ColorSensor colorSensor;

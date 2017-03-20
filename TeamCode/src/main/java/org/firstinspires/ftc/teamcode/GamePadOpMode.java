@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -9,6 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by andrei on 26.01.2017.
  */
 @TeleOp(name="GamePad", group="Iterative Opmode")
+@Disabled
 public class GamePadOpMode extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
 

@@ -49,6 +49,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @TeleOp(name="First OpMode", group="Iterative Opmode")  // @Autonomous(...) is the other common choice
+@Disabled
 public class MyOpmode extends OpMode
 {
 

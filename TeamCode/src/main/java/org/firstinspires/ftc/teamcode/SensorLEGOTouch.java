@@ -29,7 +29,7 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-package org.firstinspires.ftc.robotcontroller.external.samples;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -46,7 +46,6 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 @TeleOp(name = "Sensor: LEGO touch", group = "Sensor")
-@Disabled
 public class SensorLEGOTouch extends LinearOpMode {
 
   TouchSensor touchSensor;  // Hardware Device Object
@@ -55,7 +54,7 @@ public class SensorLEGOTouch extends LinearOpMode {
   public void runOpMode() {
 
     // get a reference to our Light Sensor object.
-    touchSensor = hardwareMap.touchSensor.get("sensor_touch");
+    touchSensor = hardwareMap.touchSensor.get("s1");
     int counter = 0;
 
     // wait for the start button to be pressed.

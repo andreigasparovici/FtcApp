@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import android.util.Log;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -15,6 +16,7 @@ import java.util.Date;
  */
 
 @TeleOp(name="OpWorkingMode", group="Iterative Opmode")
+@Disabled
 public class OpWorkingMode extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
 

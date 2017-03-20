@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -42,6 +43,13 @@ public class IndependentOpMode extends OpMode {
     }
 
     int rotatiePerie = 0;
+    boolean prevstate = false;
+
+    private void switchPerie() {
+        if (rotatiePerie == 1)
+            rotatiePerie = 0;
+        else rotatiePerie = 1;
+    }
 
     @Override
     public void loop() {
@@ -50,11 +58,11 @@ public class IndependentOpMode extends OpMode {
         rightMotor.setPower(-gamepad1.right_stick_y);
         leftMotor.setPower(gamepad1.left_stick_y);
 
-        if (gamepad1.a) {
-            if (rotatiePerie == 1)
-                rotatiePerie = 0;
-            else rotatiePerie = 1;
+        if (gamepad1.a && !prevstate) {
+            switchPerie();
         }
+        prevstate = gamepad1.a;
+
         if (gamepad1.y) {
             if (rotatiePerie == -1)
                 rotatiePerie = 0;
