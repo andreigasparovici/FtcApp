@@ -53,6 +53,8 @@ public class BeaconPress  extends OpMode{
 
 
             //TODO: Rewrite this cancerous code
+            //TODO: yes bossy - Trett 2017
+            //TODO: I forgot baby - Trett 2018
 
             if (gamepad1.y) {
                 if (puterePerie == 0) {

@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
  * Created by alex on 31.01.2017.
  */
 @TeleOp(name="Range sensor", group="Iterative Opmode")
-@Disabled
+
 public class RangeSensorOpMode extends OpMode {
 
     byte[] range1Cache; //The read will return an array of bytes. They are stored in this variable
