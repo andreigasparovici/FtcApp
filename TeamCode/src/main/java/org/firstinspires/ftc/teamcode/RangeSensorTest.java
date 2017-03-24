@@ -17,6 +17,7 @@ public class RangeSensorTest extends LinearOpMode {
 
     public void runOpMode(){
         rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, RANGE_SENSOR_NAME);
+        //Pin 4
         waitForStart();
         while(opModeIsActive()){
             double x=rangeSensor.getDistance(DistanceUnit.CM);

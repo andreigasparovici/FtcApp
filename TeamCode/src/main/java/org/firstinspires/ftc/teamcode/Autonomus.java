@@ -20,8 +20,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 /**
  * Created by DragosTrett on 23.03.2017.
  */
+/*ranger :4
 
-
+*/
 @Autonomous(name="Autonomus", group="Iterative Opmode")
 
 public class Autonomus extends LinearOpMode {
