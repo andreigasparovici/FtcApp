@@ -4,18 +4,13 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.I2cDevice;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImpl;
-import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
@@ -81,8 +76,8 @@ public class Autonomus extends LinearOpMode {
         brushMotor = hardwareMap.dcMotor.get(BRUSH_MOTOR);
         trebuchetmotor = hardwareMap.dcMotor.get(TREBUCHET_MOTOR);
 
-        RANGE1 = hardwareMap.i2cDevice.get(RANGE_SENSOR_NAME);
-        RANGE1Reader = new I2cDeviceSynchImpl(RANGE1, RANGE1ADDRESS, false);
+        //RANGE1 = hardwareMap.i2cDevice.get(RANGE_SENSOR_NAME);
+        //RANGE1Reader = new I2cDeviceSynchImpl(RANGE1, RANGE1ADDRESS, false);
         RANGE1Reader.engage();
 
         s1 = hardwareMap.touchSensor.get(TOUCH_SENSOR[0]);
@@ -96,7 +91,7 @@ public class Autonomus extends LinearOpMode {
 
         colorServo.setPosition(COLOR_SERVO_RIGHT);
 
-        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "sensor_range");
+        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, RANGE_SENSOR_NAME);
 
     }
 
