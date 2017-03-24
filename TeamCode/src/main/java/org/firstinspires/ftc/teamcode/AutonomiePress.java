@@ -24,6 +24,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 
 @TeleOp(name = "Autonomie press", group = "Autonomous Opmode")
+@Disabled
 public class AutonomiePress extends LinearOpMode {
 
     ColorSensor colorSensor;

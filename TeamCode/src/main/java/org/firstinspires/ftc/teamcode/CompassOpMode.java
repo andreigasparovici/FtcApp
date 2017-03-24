@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CompassSensor;
@@ -8,6 +9,7 @@ import com.qualcomm.robotcore.hardware.CompassSensor;
  * Created by alex on 16.03.2017.
  */
 @TeleOp(name = "Compass MOde", group = "Sensor")
+@Disabled
 public class CompassOpMode extends OpMode {
     CompassSensor compassSensor;
 

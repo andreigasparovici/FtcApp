@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @TeleOp(name="OpFuckingMode", group="Iterative Opmode")
+@Disabled
 public class OpFuckingMOde extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
 

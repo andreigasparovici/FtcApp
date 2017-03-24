@@ -1,5 +1,5 @@
 
-package org.firstinspires.ftc.teamcode.utils;
+package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
@@ -27,9 +27,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  */
 
 
-@Autonomous(name="AutonomusDickus", group="Iterative Opmode")
-@Disabled
-public class AutonomusDickus extends LinearOpMode {
+@Autonomous(name="Autonomus", group="Iterative Opmode")
+
+public class Autonomus extends LinearOpMode {
 
     double motor_universal_power=0.5;
 
@@ -39,7 +39,7 @@ public class AutonomusDickus extends LinearOpMode {
 
     //Maping the bitch
     ModernRoboticsI2cRangeSensor rangeSensor;
-    double distanta_min_pork=7;
+    double distanta_min_pork=6;
     int timp_90grade=600;
 
     DcMotor leftMotor, rightMotor, brushMotor, trebuchetmotor;
@@ -94,7 +94,9 @@ public class AutonomusDickus extends LinearOpMode {
 
         colorServo = hardwareMap.servo.get(COLOR_SERVO_NAME);
 
-        colorServo.setPosition(COLOR_SERVO_CENTER);
+        colorServo.setPosition(COLOR_SERVO_RIGHT);
+
+        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "sensor_range");
 
     }
 
@@ -115,7 +117,7 @@ public class AutonomusDickus extends LinearOpMode {
 
     private boolean foundLine(){return a[1] == 0 || a[2] == 0 || a[3] == 0;}
 
-    private double returnTheDistanceBitch() {
+    private double returnTheDistance() {
         //TODO test that bitch
         double x=rangeSensor.getDistance(DistanceUnit.CM);
         //telemetry.addData("cm", "%.2f cm", x);
@@ -136,7 +138,7 @@ public class AutonomusDickus extends LinearOpMode {
         rightMotor.setPower(0);
     }
 
-    private void pressTheBitchInTheFace(){
+    private void pressTheBeacon(){
         //TODO press the button timi's code pls work
         colorServo.setPosition(COLOR_SERVO_RIGHT);
         if(colorSensor.red() > colorSensor.blue()){
@@ -151,7 +153,7 @@ public class AutonomusDickus extends LinearOpMode {
         }
     }
 
-    private void LaunchThatBitchIntoSpace(){
+    private void Launch(){
         //TODO align the robot to the vortex
         rightMotor.setPower(1);
         leftMotor.setPower(1);
@@ -164,23 +166,23 @@ public class AutonomusDickus extends LinearOpMode {
         trebuchetmotor.setPower(0);
     }
 
-    private void FoundTheLIneBitchJERRY(){
+    private void FoundTheLIne(){
 
-            //turn 90 dg
+        //turn 90 dg
+        rightMotor.setPower(1);
+        leftMotor.setPower(1);
+        sleep(timp_90grade);
+        rightMotor.setPower(0);
+        leftMotor.setPower(0);
+
+        //go forth until limit
+        while (returnTheDistance()>distanta_min_pork){
             rightMotor.setPower(1);
             leftMotor.setPower(1);
-            sleep(timp_90grade);
-            rightMotor.setPower(0);
-            leftMotor.setPower(0);
-
-            //go forth until limit
-            while (returnTheDistanceBitch()>distanta_min_pork){
-                rightMotor.setPower(1);
-                leftMotor.setPower(1);
-                delay(10);
-            }
-            pressTheBitchInTheFace();
-            LaunchThatBitchIntoSpace();
+            delay(10);
+        }
+        pressTheBeacon();
+        Launch();
     }
 
     private void doTheMagicPlease(){
@@ -192,7 +194,7 @@ public class AutonomusDickus extends LinearOpMode {
             if(foundLine()){
                 rightMotor.setPower(0);
                 leftMotor.setPower(0);
-                FoundTheLIneBitchJERRY();
+                FoundTheLIne();
             }
             //TODO harcodeaza coae sa ajunga la linii
 
@@ -201,7 +203,6 @@ public class AutonomusDickus extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "sensor_range");
         mapDevices();
         waitForStart();
         doTheMagicPlease();

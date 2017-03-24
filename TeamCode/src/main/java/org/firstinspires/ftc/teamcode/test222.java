@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.support.annotation.StringDef;
+
+import com.google.gson.annotations.Since;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -9,6 +12,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Created by alex on 06.02.2017.
  */
 @TeleOp(name="Gametest", group="Iterative Opmode")
+@Disabled
 public class test222 extends OpMode {
     private DcMotor leftMotor = null;
     private DcMotor rightMotor = null;

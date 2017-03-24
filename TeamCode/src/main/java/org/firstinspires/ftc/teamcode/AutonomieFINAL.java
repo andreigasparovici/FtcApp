@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
@@ -16,8 +17,9 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  */
 
 @TeleOp(name="AUTONOMIE FINAL", group="Iterative Opmode")
+@Disabled
 public class AutonomieFINAL extends LinearOpMode{
-
+    //TODO THIS IS NOT THE FINAL ONE MOTHERFUCKER
     // MAPARE DEVICE-URI:
 
     public static final String COLOR_SENSOR_NAME = "color_sensor";

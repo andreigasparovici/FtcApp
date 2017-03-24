@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.utils.PerieHandler;
  */
 
 @TeleOp(name="Independent OpMode **THE GOOD ONE**", group="Iterative Opmode")
+@Disabled
 public class IndependentOpMode {
     /*
     private ElapsedTime runtime = new ElapsedTime();

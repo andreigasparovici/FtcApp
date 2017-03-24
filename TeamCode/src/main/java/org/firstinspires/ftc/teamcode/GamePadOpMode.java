@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Created by andrei on 26.01.2017.
  */
 @TeleOp(name="GamePad", group="Iterative Opmode")
-
+@Disabled
 public class GamePadOpMode extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
