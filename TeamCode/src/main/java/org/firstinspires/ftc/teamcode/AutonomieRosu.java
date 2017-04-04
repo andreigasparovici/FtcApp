@@ -23,9 +23,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 /*ranger :4
     color: 2
 */
-@Autonomous(name="Autonomus", group="Iterative Opmode")
+@Autonomous(name="AutonomieRosu", group="Iterative Opmode")
 
-public class Autonomus extends LinearOpMode {
+public class AutonomieRosu extends LinearOpMode {
 
     double motor_universal_power=0.5;
 
@@ -122,7 +122,7 @@ public class Autonomus extends LinearOpMode {
     }
 
     private void pressTheBeacon(){
-        if(colorSensor.red() > colorSensor.blue()){
+        if(colorSensor.red() < colorSensor.blue()){
             colorServo.setPosition(COLOR_SERVO_CENTER);
             delay(100);
             ApasaDreapta();
@@ -140,50 +140,53 @@ public class Autonomus extends LinearOpMode {
     private void Launch(){
         //TODO align the robot to the vortex
         trebuchetmotor.setPower(1);
-        delay(100);
+        delay(200);
         trebuchetmotor.setPower(0);
     }
 
     private void FoundTheLIne(){
 
         //turn 90 dg
-        rightMotor.setPower(1);
+        rightMotor.setPower(-1);
         leftMotor.setPower(1);
+        delay(100);
+        rightMotor.setPower(-1);
+        leftMotor.setPower(-1);
         sleep(timp_90grade);
         rightMotor.setPower(0);
         leftMotor.setPower(0);
 
         //go forth until limit
         while (returnTheDistance()>distanta_min_pork){
-            rightMotor.setPower(motor_universal_power);
+            rightMotor.setPower(-motor_universal_power);
             leftMotor.setPower(motor_universal_power);
-            delay(10);
+            delay(1);
         }
         pressTheBeacon();
         leftMotor.setPower(-1);
         rightMotor.setPower(1);
-        delay(500);
-        //Launch();
+        delay(300);
+        Launch();
     }
 
     private void doTheMagicPlease(){
         boolean ok=false;
         colorServo.setPosition(COLOR_SERVO_RIGHT);
-        brushMotor.setPower(1);
-        leftMotor.setPower(1);
-        rightMotor.setPower(1);
+        brushMotor.setPower(0);
+        leftMotor.setPower(-1);
+        rightMotor.setPower(-1);
         delay(timp_90grade/2);
         leftMotor.setPower(1);
         rightMotor.setPower(-1);
         delay(750);
-        leftMotor.setPower(-1);
-        rightMotor.setPower(-1);
-        delay(750);
+        leftMotor.setPower(1);
+        rightMotor.setPower(1);
+        delay(timp_90grade/2);
         rightMotor.setPower(-motor_universal_power);
         leftMotor.setPower(motor_universal_power);
         do{
             readLine();
-            rightMotor.setPower(motor_universal_power);
+            rightMotor.setPower(-motor_universal_power);
             leftMotor.setPower(motor_universal_power);
             if(foundLine()){
                 rightMotor.setPower(0);

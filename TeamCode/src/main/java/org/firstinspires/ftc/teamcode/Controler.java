@@ -38,8 +38,8 @@ public class Controler extends OpMode{
     @Override
     public void loop(){
 
-        rightMotor.setPower(-gamepad1.right_stick_y);
-        leftMotor.setPower(gamepad1.left_stick_y);
+        rightMotor.setPower(gamepad1.left_stick_y);
+        leftMotor.setPower(-gamepad1.right_stick_y);
         if(gamepad1.y){
             brushMotor.setPower(1);
         }

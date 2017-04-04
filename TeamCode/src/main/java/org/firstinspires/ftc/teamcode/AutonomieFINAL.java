@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -16,8 +17,8 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  * Created by andrei on 16.03.2017.
  */
 
-@TeleOp(name="AUTONOMIE FINAL", group="Iterative Opmode")
-@Disabled
+@Autonomous(name="AUTONOMIE FINAL", group="Iterative Opmode")
+
 public class AutonomieFINAL extends LinearOpMode{
     //TODO THIS IS NOT THE FINAL ONE MOTHERFUCKER
     // MAPARE DEVICE-URI:
@@ -47,13 +48,6 @@ public class AutonomieFINAL extends LinearOpMode{
 
     DcMotor leftMotor, rightMotor, brushMotor;
 
-    byte[] range1Cache;
-    I2cAddr RANGE1ADDRESS = new I2cAddr(0x14);
-    public static final int RANGE1_REG_START = 0x04;
-    public static final int RANGE1_READ_LENGTH = 2;
-    public I2cDevice RANGE1;
-    public I2cDeviceSynch RANGE1Reader;
-
     TouchSensor s1,s2,s3;
     int[] a=new int[9];
 
@@ -65,10 +59,6 @@ public class AutonomieFINAL extends LinearOpMode{
         leftMotor  = hardwareMap.dcMotor.get(LEFT_MOTOR);
         rightMotor = hardwareMap.dcMotor.get(RIGHT_MOTOR);
         brushMotor = hardwareMap.dcMotor.get(BRUSH_MOTOR);
-
-        RANGE1 = hardwareMap.i2cDevice.get(RANGE_SENSOR_NAME);
-        RANGE1Reader = new I2cDeviceSynchImpl(RANGE1, RANGE1ADDRESS, false);
-        RANGE1Reader.engage();
 
         s1 = hardwareMap.touchSensor.get(TOUCH_SENSOR[0]);
         s2 = hardwareMap.touchSensor.get(TOUCH_SENSOR[1]);
@@ -146,8 +136,6 @@ public class AutonomieFINAL extends LinearOpMode{
 
             brushMotor.setPower(.5);
 
-            range1Cache = RANGE1Reader.read(RANGE1_REG_START, RANGE1_READ_LENGTH);
-            // int ultraSonic = range1Cache[0] & 0xFF;
             readLine();
 
             boolean ok = false;
@@ -184,11 +172,74 @@ public class AutonomieFINAL extends LinearOpMode{
         }
     }
 
+     public long mergidracu(double distanta)
+    {
+        return (long)distanta/65*1000;
+    }
+
+    public double rotate(int unghi)
+    {
+        return  (3.1415*34*unghi)/180;
+    }
+
+    public void beaconas() throws InterruptedException{
+        rightMotor.setPower(-1);
+        leftMotor.setPower(1);
+        sleep(1400);
+
+        //MERGI PARALEL CU BEACONUL
+        rightMotor.setPower(0);
+        leftMotor.setPower(0);
+
+        //OPRESTE MOTOARELE
+
+        leftMotor.setPower(-1);
+        rightMotor.setPower(-1);
+        sleep(640);
+
+        //INTOARCE 90 DE GRADE
+
+        leftMotor.setPower(1);
+        rightMotor.setPower(-1);
+        sleep(810);
+
+        //MERGI SPRE BEACON
+
+        rightMotor.setPower(0);
+        leftMotor.setPower(0);
+
+        //OPRESTE MOTOARELE
+
+
+
+        colorServo.setPosition(COLOR_SERVO_RIGHT);
+        if(colorSensor.red() < colorSensor.blue()){
+            colorServo.setPosition(COLOR_SERVO_INITIAL);
+            rightMotor.setPower(1);
+            sleep(200);
+            rightMotor.setPower(-1);
+            rightMotor.setPower(0);
+        }
+
+        else{
+            colorServo.setPosition(COLOR_SERVO_INITIAL);
+            leftMotor.setPower(-1);
+            sleep(200);
+            leftMotor.setPower(1);
+            leftMotor.setPower(0);
+        }
+
+        ///BEACON DETECT
+
+
+    }
+
 
     @Override
     public void runOpMode() throws InterruptedException {
         mapDevices();
         waitForStart();
-        doTheMagic();
+        //doTheMagic();
+        beaconas();
     }
 }
